@@ -4,13 +4,13 @@
 <br>							
 <p><%= @goal.notes %></p>						
 							
-<form method="post" action="/goals/<%=@goal.id %>">							
+<form method="post" action="/goals/<%=@goal.id%>">							
 	<input type="hidden" id="hidden" name="_method" value="delete">						
 	<input type="submit" value="Delete">						
 </form>							
 							
 <a href="/goals/<%=@goal.id%>/edit"><button> Edit </button></a>							
-<a href="/goals"><button> View all </button></a>							
+<a href="/goals"><button> View All </button></a>							
 							
 							
 							

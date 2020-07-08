@@ -17,7 +17,7 @@ class GoalsController < ApplicationController
         end				
     end					
                         
-    post "/goals" do					
+    post "/goals" do		
         if logged_in? && params[:title] != nil				
             @goal = current_user.goals.build(params)			
             if @goal.save			
@@ -60,14 +60,11 @@ class GoalsController < ApplicationController
     patch "/goals/:id" do					
         if logged_in?				
             @goal = current_user.goals.find_by_id(params[:id])			
-            if @goal && params[:title] != nil			
-                @goal.title = params[:title]
-                @goal.tasks = params[:tasks]
-                @goal.notes = params[:notes]
-                @goal.save
-                redirect to "/goals/#{goal.id}"	
+            if @goal && params[:title] != nil
+                @goal.update(title: params[:title], tasks: params[:tasks], notes: params[:notes])
+                redirect to "/goals/#{@goal.id}"	
             else		
-                redirect to "/goals/#{goal.id}/edit"	
+                redirect to "/goals/#{@goal.id}/edit"	
             end			
         else				
             redirect to "/login"			
