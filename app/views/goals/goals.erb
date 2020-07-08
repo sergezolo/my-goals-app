@@ -1,12 +1,11 @@
-<h2 style='float: left;'>MyGoals</h2> 
-<div style='float: right;'> Welcome, <%=current_user.name%> <a href="/logout">Log Out</a></div>
+<h2 style="float: left;">MyGoals</h2> 
+<div style="float: right;"><form action="/logout">Welcome, <%=current_user.name%>  <input type="submit" value="Log Out"></form></div>
 <hr style="clear:both;"/>
 
-
-
+<p><a href="/goals/new">Add New Goal</a></p>
 
 <% @goals.each do |goal| %>				
-	<p><a href="/goals/<%= goal.id %>"><%= goal.title %></a></p>			
+	<p><a href="/goals/<%= goal.id %>"><%= goal.title%></a></p>			
 <% end %>				
 				
 				
