@@ -9,9 +9,10 @@ class GoalsController < ApplicationController
         end				
     end
 
-    get "/goals/new" do					
+    get "/goals/new" do	
         if logged_in?				
-            erb :"/goals/new"			
+            erb :"/goals/new"
+            binding.pry
         else				
             redirect to "/login"			
         end				
@@ -19,8 +20,9 @@ class GoalsController < ApplicationController
                         
     post "/goals" do		
         if logged_in? && params[:title] != nil				
-            @goal = current_user.goals.build(params)			
-            if @goal.save			
+            @goal = current_user.goals.build(params)
+            @goal.tasks.build(params)
+            if @goal.save 			
                 redirect to "/goals/#{@goal.id}"		
             else			
                 redirect to "/goals/new"		
