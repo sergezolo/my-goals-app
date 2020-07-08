@@ -1,6 +1,10 @@
-<h2> <%= @goal.title %></h2>							
-<br>							
-<p><%= @goal.tasks %></p>		
+<h3> <%= @goal.title %></h3>							
+<br>
+
+<% @goal.tasks.each do |task| %>
+    <li><p><%= task.task %></p></li>
+<% end %>	
+	
 <br>							
 <p><%= @goal.notes %></p>						
 							
