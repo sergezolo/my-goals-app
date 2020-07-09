@@ -1,23 +1,28 @@
-<h3> <%= @goal.title %></h3>							
+
+<div style="font-size:20px"><%= @goal.title %></div>
+<br>
+<p style="font-size:15px">Tasks:</p>
+    <% @goal.tasks.each do |task| %>
+        <li><input type="checkbox"> <%= task.task %></li><br>
+    <% end %>	
+<p style="font-size:15px">Notes:</p>
+<p><%= @goal.notes %></p>
 <br>
 
-<% @goal.tasks.each do |task| %>
-    <li><p><%= task.task %></p></li>
-<% end %>	
-	
-<br>							
-<p><%= @goal.notes %></p>						
-							
-<form method="post" action="/goals/<%=@goal.id%>">							
-	<input type="hidden" id="hidden" name="_method" value="delete">						
-	<input type="submit" value="Delete">						
-</form>							
-							
-<a href="/goals/<%=@goal.id%>/edit"><button> Edit </button></a>							
-<a href="/goals"><button> View All </button></a>							
-							
-							
-							
-							
-							
-							
+<div style="width:200px;">
+    <div style="float: left; width: 100px"> 
+		<form method="post" action="/goals/<%= @goal.id%>">
+		<input type="hidden" id="hidden" name="_method" value="patch">
+		<input type="submit" value="         Edit          ">
+        </form>	
+    </div>
+    <div style="float: right; width: 100px"> 
+        <form method="post" action="/goals/<%=@goal.id%>">							
+			<input type="hidden" id="hidden" name="_method" value="delete">						
+			<input type="submit" value="        Delete        ">						
+		</form>		
+    </div>
+</div>
+<br><br>
+<div><form action="/goals"><input type="submit" value="                        OK                        "></form></div>
+

@@ -1,19 +1,16 @@
 <form method="post" action="/goals">
-    <fieldset>
-        <legend><h3>New Goal:</h3></legend>
+    <div style="font-size:20px">New Goal:</div>
+    <br>
+    <p style="font-size:15px">Title: <input id="title" type="string" name="title"></p>
+    <br>
+    <p style="font-size:15px">Tasks:</p>
+                <li><label>-> </label><input id="tasks" type="string" name="tasks[][task]" size="23"></li>
+            <br><li><label>-> </label><input id="tasks" type="string" name="tasks[][task]" size="23"></li>
+            <br><li><label>-> </label><input id="tasks" type="string" name="tasks[][task]" size="23"></li>
+            <br><li><label>-> </label><input id="tasks" type="string" name="tasks[][task]" size="23"></li>
+            <br><li><label>-> </label><input id="tasks" type="string" name="tasks[][task]" size="23"></li>
         <br>
-        <li><label>Title:</label><input id="title" type="string" name="title"></li>
-        <br>
-        <li><label>Tasks:</label><br>
-            <br><li><label>-></label><input id="tasks" type="string" name="tasks[][task]"></li>
-            <br><li><label>-></label><input id="tasks" type="string" name="tasks[][task]"></li>
-            <br><li><label>-></label><input id="tasks" type="string" name="tasks[][task]"></li>
-            <br><li><label>-></label><input id="tasks" type="string" name="tasks[][task]"></li>
-            <br><li><label>-></label><input id="tasks" type="string" name="tasks[][task]"></li>
-        <br>
-        <li><label>Notes:</label><textarea name="notes"></textarea></li>
-        <br>
-        <li><input type="submit" value="OK"></li>
-        <br>
-    </fieldset>
+    <p style="font-size:15px">Notes:</p>
+    <input id="notes" type="text" name="notes" size="26"><br>
+    <br><input type="submit" value="                        OK                        "><br>
 </form>

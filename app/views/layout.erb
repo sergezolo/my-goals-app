@@ -16,13 +16,14 @@
   <body>
     <div class="wrapper">
 
-
-    <h2 style="float: left;">MyGoals</h2> 
+    <h3 style="float: left;">MyGoals</h3> 
     <%if logged_in?%>
-      <div style="float: right;"><form action="/logout">Welcome, <%=current_user.name%>  <input type="submit" value="Log Out"></form></div>
+      <div style="float: right;"><form action="/logout">Welcome, <%=current_user.name%>  <input type="submit" value="  Log Out  "></form></div>
     <%end%>
-    <hr style="clear:both;"/>
-
+   
+      <footer class="branding">
+      </footer>
+    
         <%= yield %>
 
       <footer class="branding">
