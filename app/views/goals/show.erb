@@ -11,8 +11,7 @@
 
 <div style="width:200px;">
     <div style="float: left; width: 100px"> 
-		<form method="post" action="/goals/<%= @goal.id%>">
-		<input type="hidden" id="hidden" name="_method" value="patch">
+		<form action="/goals/<%= @goal.id%>/edit">
 		<input type="submit" value="         Edit          ">
         </form>	
     </div>

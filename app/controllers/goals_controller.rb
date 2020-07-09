@@ -18,7 +18,7 @@ class GoalsController < ApplicationController
     end					
 
     post "/goals" do		
-        if logged_in? && params[:title] != nil
+        if logged_in? && params[:title] != ""
             @goal = current_user.goals.build(title: params[:title], notes: params[:notes])
             params[:tasks].each do |task|
                 @task = @goal.tasks.build(task: task["task"])
@@ -62,15 +62,19 @@ class GoalsController < ApplicationController
                         
                         
     patch "/goals/:id" do					
-        if logged_in?				
-            @goal = current_user.goals.find_by_id(params[:id])			
-            if @goal && params[:title] != nil
-                @goal.title = params[:title]
+        if logged_in?
 
-                params[:tasks].each do |task|
-                    @task = @goal.tasks.update(task: task["task"])
-                end
-         
+
+            @goal = current_user.goals.find_by_id(params[:id])			
+            if @goal && params[:title] != ""
+                binding.pry
+                @goal.title = params[:title]
+                    @goal.tasks.each do |task|
+                        task.update(params[task: task["task"]]) 
+                    end
+                # params[:tasks].each do |task|
+                #     @task = @goal.tasks.build(task: task["task"])
+                # end
 
                 @goal.notes = params[:notes]
                 @goal.save
@@ -84,10 +88,11 @@ class GoalsController < ApplicationController
     end 					
                         
     delete "/goals/:id" do					
-        if logged_in?				
-            goal = current_user.goals.find_by_id(params[:id])			
-            if goal			
-                goal.delete		
+        if logged_in?	
+            goal = current_user.goals.find_by_id(params[:id])	
+            if goal	
+                goal.tasks.each {|task| task.delete}
+                goal.delete	
             end			
             redirect to "/goals"			
         else				
