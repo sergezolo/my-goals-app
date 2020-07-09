@@ -3,7 +3,7 @@ class GoalsController < ApplicationController
     get "/goals" do					
         if logged_in?				
             @goals = current_user.goals
-            erb :"goals/goals"			
+            erb :"goals/index"			
         else				
             redirect to "/login"			
         end				
@@ -21,7 +21,7 @@ class GoalsController < ApplicationController
         if logged_in? && params[:title] != ""
             @goal = current_user.goals.build(title: params[:title], notes: params[:notes])
             params[:tasks].each do |task|
-                @task = @goal.tasks.build(task: task["task"])
+                @goal.tasks.build(task: task["task"])
             end
 
             if @goal.save 			
@@ -67,15 +67,10 @@ class GoalsController < ApplicationController
 
             @goal = current_user.goals.find_by_id(params[:id])			
             if @goal && params[:title] != ""
-                binding.pry
                 @goal.title = params[:title]
-                    @goal.tasks.each do |task|
-                        task.update(params[task: task["task"]]) 
+                    @goal.tasks.each_with_index do |task, index|
+                        task.update(task: params[:tasks][index]["task"])
                     end
-                # params[:tasks].each do |task|
-                #     @task = @goal.tasks.build(task: task["task"])
-                # end
-
                 @goal.notes = params[:notes]
                 @goal.save
                 redirect to "/goals/#{@goal.id}"	

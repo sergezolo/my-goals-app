@@ -3,7 +3,9 @@
 <br>
 <p style="font-size:15px">Tasks:</p>
     <% @goal.tasks.each do |task| %>
-        <li><input type="checkbox"> <%= task.task %></li><br>
+        <%if task.task != "" %>
+            <li><input type="checkbox"> <%= task.task %></li><br>
+        <% end %>   
     <% end %>	
 <p style="font-size:15px">Notes:</p>
 <p><%= @goal.notes %></p>
