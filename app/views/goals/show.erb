@@ -1,16 +1,16 @@
-<form action="/goals/<%=@goal.id%>">
+<form action="/goals">
 <div style="font-size:20px"><%= @goal.title %></div>
 <br>
 <p style="font-size:15px">Tasks:</p>
     <% @goal.tasks.each do |task| %>
         <%if task.task != "" %>
-            <li><input type="checkbox" name="<%=task.id%>" id="<%=task.id%>" value="<%= task.id%>" <%='checked' if task.status == 1%>> <%= task.task %></li><br>
+            <li><input type="checkbox" name="<%=task.id%>" id="<%=task.id%>" value="<%= task.id%>" <%='checked' if task.status == "1"%>> <%= task.task %></li><br>
         <% end %>   
     <% end %>	
 <p style="font-size:15px">Notes:</p>
 <p><%= @goal.notes %></p>
 <br>
-<input type="submit" value="               Update Tasks                ">
+<input type="submit" value="                        OK                        ">
 </form>
 <br>
 <div style="width:200px;">
@@ -27,4 +27,4 @@
     </div>
 </div>
 <br><br>
-<div><form action="/goals"><input type="submit" value="                   All Goals                    "></form></div>
+

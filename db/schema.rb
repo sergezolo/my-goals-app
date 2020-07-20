@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 5) do
   create_table "tasks", force: :cascade do |t|
     t.string "task"
     t.integer "goal_id"
-    t.integer "status"
+    t.string "status"
   end
 
   create_table "users", force: :cascade do |t|

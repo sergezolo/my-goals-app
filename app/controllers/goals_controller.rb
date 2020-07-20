@@ -3,6 +3,17 @@ class GoalsController < ApplicationController
     get "/goals" do					
         if logged_in?				
             @goals = current_user.goals
+            params.each do |k, v|
+                if k != "id"
+                    @task = Task.all.find_by_id(k.to_i)
+                    @task.update(status: "1")
+                    #if @task.status == "1"
+                        #@task.update(status: nil)
+                    #else
+                        #@task.update(status: "1")
+                    #end
+                end
+            end
             erb :"goals/index"			
         else				
             redirect to "/login"			
@@ -37,28 +48,6 @@ class GoalsController < ApplicationController
     get "/goals/:id" do					
         if logged_in?	
             @goal = current_user.goals.find_by_id(params[:id])
-            
-        #binding.pry
-            params.each do |k, v|
-                if k != "id"
-                    @task = Task.all.find_by_id(k.to_i)
-                    @task.update(status: "1")
-                end
-            end
-
-            a = 0; b = 0;
-            @goal.tasks.each do |task|
-                if task.task != ""
-                    a += 1
-                end
-            end
-            @goal.tasks.each do |task|
-                if task.status == 1
-                    b += 1
-                end
-            end
-
-            @percent = (100 * b) / a
 
             if @goal			
                 erb :"/goals/show"		
