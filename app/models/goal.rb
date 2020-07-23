@@ -1,22 +1,22 @@
 class Goal < ActiveRecord::Base
     belongs_to :user
     has_many :tasks
-end
 
-def percentage_calculation
-    a = 0; b = 0;
-        @goal.tasks.each do |task|
-            if task.task != ""
-                a += 1
+
+    def percentage_calculation
+        a = 0; b = 0;
+        #binding.pry
+            self.tasks.each do |task|
+                if task.task != ""
+                    a += 1
+                end
+
+                if task.status == "1"
+                    b += 1
+                end
             end
-        end
-        
-        @goal.tasks.each do |task|
-            if task.status == 1
-                b += 1
-            end
-        end
 
-    @percent = (100 * b) / a
+        @percent = (100 * b) / a
 
+    end
 end
