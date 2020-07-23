@@ -5,7 +5,6 @@ class Goal < ActiveRecord::Base
 
     def percentage_calculation
         a = 0; b = 0;
-        #binding.pry
             self.tasks.each do |task|
                 if task.task != ""
                     a += 1
