@@ -3,17 +3,6 @@ class GoalsController < ApplicationController
     get "/goals" do					
         if logged_in?				
             @goals = current_user.goals
-            params.each do |k, v|
-                if k != "id"
-                    @task = Task.all.find_by_id(k.to_i)
-                    @task.update(status: "1")
-                    #if @task.status == "1"
-                        #@task.update(status: nil)
-                    #else
-                        #@task.update(status: "1")
-                    #end
-                end
-            end
             erb :"goals/index"			
         else				
             redirect to "/login"			
@@ -31,6 +20,7 @@ class GoalsController < ApplicationController
     post "/goals" do		
         if logged_in? && params[:title] != ""
             @goal = current_user.goals.build(title: params[:title], notes: params[:notes])
+             
             params[:tasks].each do |task|
                 @goal.tasks.build(task: task["task"])
             end

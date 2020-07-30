@@ -1,17 +1,18 @@
-<form action="/goals">
 <div style="font-size:20px"><%= @goal.title %></div>
 <br>
 <p style="font-size:15px">Tasks:</p>
     <% @goal.tasks.each do |task| %>
-        <%if task.task != "" %>
-            <li><input type="checkbox" name="<%=task.id%>" id="<%=task.id%>" value="<%= task.id%>" <%='checked' if task.status == "1"%>> <%= task.task %></li><br>
-        <% end %>   
+        <form method="post" action="/tasks/<%= task.id%>">
+            <input type="hidden" id="hidden" name="_method" value="patch">
+            <%if task.task != "" %>
+                <li><input type="checkbox" name="status" id="<%=task.id%>" value="<%= !task.status %>" <%='checked' if task.status%> onChange="this.form.submit()" > <%= task.task %></li><br>
+            <% end %>
+        </form>
     <% end %>	
 <p style="font-size:15px">Notes:</p>
 <p><%= @goal.notes %></p>
 <br>
-<input type="submit" value="                        OK                        ">
-</form>
+
 <br>
 <div style="width:200px;">
     <div style="float: left; width: 100px"> 
@@ -26,5 +27,9 @@
 		</form>		
     </div>
 </div>
+<br><br>
+	<form action="/goals">
+	<input type="submit" value="                    All Goals                   ">
+    </form>	
 <br><br>
 
