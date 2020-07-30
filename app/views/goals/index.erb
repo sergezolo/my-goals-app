@@ -4,5 +4,4 @@
 <%@goals.each_with_index do |goal, index|%>	
 	<p style="font-size:15px"><%= index + 1%>. <a href="/goals/<%= goal.id %>"><%= goal.title%></a> (<%= goal.percentage_calculation %>% complete)</p>			
 <% end %>				
-
 <p><a href="/goals/new">+ Add a New Goal</a></p>

@@ -4,11 +4,10 @@
     <% @goal.tasks.each do |task| %>
         <form method="post" action="/tasks/<%= task.id%>">
             <input type="hidden" id="hidden" name="_method" value="patch">
-            <%if task.task != "" %>
                 <li><input type="checkbox" name="status" id="<%=task.id%>" value="<%= !task.status %>" <%='checked' if task.status%> onChange="this.form.submit()" > <%= task.task %></li><br>
-            <% end %>
         </form>
-    <% end %>	
+    <% end %>
+    <p><a href="/tasks/new">+ Add a New Task</a></p>	
 <p style="font-size:15px">Notes:</p>
 <p><%= @goal.notes %></p>
 <br>

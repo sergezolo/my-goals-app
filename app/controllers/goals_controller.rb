@@ -22,7 +22,9 @@ class GoalsController < ApplicationController
             @goal = current_user.goals.build(title: params[:title], notes: params[:notes])
              
             params[:tasks].each do |task|
-                @goal.tasks.build(task: task["task"])
+                if task["task"] != ""
+                    @goal.tasks.build(task: task["task"])
+                end
             end
 
             if @goal.save 			
@@ -38,6 +40,7 @@ class GoalsController < ApplicationController
     get "/goals/:id" do					
         if logged_in?	
             @goal = current_user.goals.find_by_id(params[:id])
+            session[:goal_id] = @goal.id
 
             if @goal			
                 erb :"/goals/show"		
@@ -46,7 +49,7 @@ class GoalsController < ApplicationController
             end			
         else				
             redirect to "/login"			
-        end				
+        end	
     end 					
                         
     get "/goals/:id/edit" do					
@@ -93,6 +96,6 @@ class GoalsController < ApplicationController
         else				
             redirect to "/login"			
         end				
-    end 					
- 
+    end 
+
 end

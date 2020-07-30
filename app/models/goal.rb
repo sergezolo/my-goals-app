@@ -2,7 +2,6 @@ class Goal < ActiveRecord::Base
     belongs_to :user
     has_many :tasks
 
-
     def percentage_calculation
         a = 0; b = 0;
         
@@ -18,7 +17,7 @@ class Goal < ActiveRecord::Base
         end
 
         if a == 0 && b == 0 
-            @percent = 100
+            @percent = 0
         else
             @percent = (100 * b) / a
         end
