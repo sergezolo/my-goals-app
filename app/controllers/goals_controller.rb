@@ -40,9 +40,11 @@ class GoalsController < ApplicationController
     get "/goals/:id" do					
         if logged_in?	
             @goal = current_user.goals.find_by_id(params[:id])
-            session[:goal_id] = @goal.id
+            
+            
 
-            if @goal			
+            if @goal
+                session[:goal_id] = @goal.id
                 erb :"/goals/show"		
             else			
                 redirect to "/goals"		

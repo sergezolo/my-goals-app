@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
             session[:id] = user.id
             redirect '/goals'
         else
-            redirect '/login'
+            redirect '/message'
         end
     end
   

@@ -10,7 +10,11 @@ class ApplicationController < Sinatra::Base
   end
 
   get "/" do
-      redirect to :"/login"
+    redirect to :"/login"
+  end
+
+  get '/message' do
+    erb :'/message'
   end
 
   helpers do
