@@ -13,7 +13,7 @@ To run this application just type in the terminal:
                 rake db:migrate # to get the db running
                     shotgun # to start the app in your web browser
                     
-                    Create .env file in the app folder and type "SECRET=password"
+                    Create .env file in the root folder and type "SECRET=password"
 
 Follow the URL to use the application!
 
