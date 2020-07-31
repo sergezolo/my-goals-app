@@ -12,6 +12,8 @@ To run this application just type in the terminal:
             bundle install # to install all required gems
                 rake db:migrate # to get the db running
                     shotgun # to start the app in your web browser
+                    
+                    Create .env file in the app folder and type "SECRET=password"
 
 Follow the URL to use the application!
 
